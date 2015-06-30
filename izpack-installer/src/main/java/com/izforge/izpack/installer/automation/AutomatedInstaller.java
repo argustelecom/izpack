@@ -131,6 +131,7 @@ public class AutomatedInstaller implements InstallerBase
         installData.setMessages(locales.getMessages());
         installData.setLocale(locales.getLocale(), locales.getISOCode());
         installData.setMediaPath(mediaPath);
+        installData.setVariable("automatedInstall", "true");
     }
 
     /**
