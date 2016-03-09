@@ -3,6 +3,7 @@ package org.izpack.mojo;
 import java.io.File;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
 
 import org.apache.maven.model.Developer;
 import org.apache.maven.plugin.AbstractMojo;
@@ -160,6 +161,12 @@ public class IzPackNewMojo extends AbstractMojo
      */
     private boolean enableOverrideArtifact;
 
+    /**
+	 * Whether to log each added file and other unnecessary information.
+     *
+     * @parameter default-value="true"
+     */
+    private boolean detailedLog;
 
     public void execute() throws MojoExecutionException, MojoFailureException
     {
@@ -172,7 +179,12 @@ public class IzPackNewMojo extends AbstractMojo
         compilerContainer.addComponent(CompilerData.class, compilerData);
 
         CompilerConfig compilerConfig = compilerContainer.getComponent(CompilerConfig.class);
-
+        
+        if (!detailedLog) 
+        {
+        	compilerConfig.setLoggerLevel(Level.OFF);
+        }
+        
         PropertyManager propertyManager = compilerContainer.getComponent(PropertyManager.class);
         initMavenProperties(propertyManager);
 

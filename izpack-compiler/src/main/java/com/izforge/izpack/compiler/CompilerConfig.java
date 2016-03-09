@@ -3300,4 +3300,9 @@ public class CompilerConfig extends Thread
         return conditionId;
     }
 
+	public void setLoggerLevel(Level level) 
+	{
+		logger.setLevel(level);
+	}
+
 }
